@@ -1,7 +1,7 @@
 const http = require('http');
 const express = require('express');
 const MessagingResponse = require('twilio').twiml.MessagingResponse;
-
+const port = process.env.PORT || 3000;
 const app = express();
 
 app.post('/sms', (req, res) => {
@@ -13,6 +13,6 @@ app.post('/sms', (req, res) => {
   res.end(twiml.toString());
 });
 
-http.createServer(app).listen(1337, () => {
+http.createServer(app).listen(port, () => {
   console.log('Express server listening on port 1337');
 });
