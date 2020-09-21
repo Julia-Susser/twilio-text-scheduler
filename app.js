@@ -5,6 +5,7 @@ const port = process.env.PORT || 3000;
 const app = express();
 
 app.post('/sms', (req, res) => {
+  console.log("hey")
   const twiml = new MessagingResponse();
 
   twiml.message('The Robots are coming! Head for the hills!');
