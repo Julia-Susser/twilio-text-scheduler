@@ -13,7 +13,7 @@ const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly'];
 // created automatically when the authorization flow completes for the first
 // time.
 const TOKEN_PATH = 'token.json';
-var hey = "pp"
+
 // Load client secrets from a local file.
 fs.readFile('credentials.json', (err, content) => {
   if (err) return console.log('Error loading client secret file:', err);
@@ -92,7 +92,7 @@ for (index = 0; index < array.length; index++) {
 
         console.log(event.start.dateTime || event.start.date)
         console.log(event.summary)
-        hey = "lolo"
+        var hey = "lilo"
       });
   }
 }
