@@ -1,12 +1,12 @@
-const http = require('http');
+/*const http = require('http');
 const express = require('express');
 const MessagingResponse = require('twilio').twiml.MessagingResponse;
 const port = process.env.PORT || 3000;
 const app = express();
 const fs = require('fs');
 const readline = require('readline');
-const {google} = require('googleapis');
-const cal = require('./coming-up.js')(app)
+const {google} = require('googleapis');*/
+
 // current date
 // adjust 0 before single digit date
 
@@ -32,6 +32,10 @@ client.messages.create({
 
 
 
+function sayHello() {
+    console.log('Hello');
+}
+sayHello();
 
 
 
@@ -39,8 +43,7 @@ client.messages.create({
 
 
 
-
-app.post('/sms', (req, res) => {
+/*app.post('/sms', (req, res) => {
   const twiml = new MessagingResponse();
 
   twiml.message(message);
@@ -51,4 +54,4 @@ app.post('/sms', (req, res) => {
 
 http.createServer(app).listen(port, () => {
   console.log('Express server listening on port 1337');
-});
+});*/
