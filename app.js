@@ -42,7 +42,7 @@ client.messages.create({
 
 app.post('/sms', (req, res) => {
   const twiml = new MessagingResponse();
-
+  console.log('hey')
   twiml.message(message);
 
   res.writeHead(200, {'Content-Type': 'text/xml'});
