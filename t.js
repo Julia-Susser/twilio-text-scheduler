@@ -1,8 +1,17 @@
 
+const https = require('https');
+const path = require('path');
+const fs = require('fs')
+const readline = require('readline');
+const {google} = require('googleapis');
+const date = require('date-and-time');
 
+const today = new Date(2015, 0, 2);
+const yesterday = new Date(2015, 0, 1);
 
-
-
+date.subtract(today, yesterday).toDays();           // => 1 = today - yesterday
+date.subtract(today, yesterday).toHours();          // => 24
+console.log(date.subtract(today, yesterday).toMinutes())
 
 
 
@@ -90,35 +99,39 @@
           const event = res.data.items[0];
 
           var time = event.start.dateTime
-          var minute = time.split("T")[1].split(":")[1]
-          var hours = time.split("T")[1].split(":")[0]
-          var year = time.split("T")[0].split("-")[0]
-          var month = time.split("T")[0].split("-")[1]
-          var date = time.split("T")[0].split("-")[2]
+          var minute = parseInt(time.split("T")[1].split(":")[1])
+          var hours = parseInt(time.split("T")[1].split(":")[0])
+          var year = parseInt(time.split("T")[0].split("-")[0])
+          var month = parseInt(time.split("T")[0].split("-")[1])-1
+          var datee = parseInt(time.split("T")[0].split("-")[2])
           console.log(event.summary)
           message = "lolo"
-          console.log(hours)
 
-          dt = new Date(year,month,date,hours,minute, 00);
+
+
+          dt = new Date(year,month,datee,hours,minute, 00);
           console.log(dt)
-          var dif = diff_minutes(dt);
-          console.log(dif)
-          if (dif <= 10){
-
-            var twilio = require('twilio');
-
+          const today = new Date()
+          console.log(today)
+          var hey = (date.subtract(dt, today).toMinutes())
+          console.log(hey)
+          if (hey < 10){
+            console.log("whoop")
             var accountSid = 'ACba12b2496ef12926253f813be8e1876a'; // Your Account SID from www.twilio.com/console
             var authToken = '28bde1e4f5baba87087e579cd3706ddf';   // Your Auth Token from www.twilio.com/console
 
             var twilio = require('twilio');
             var client = new twilio(accountSid, authToken);
+
             client.messages.create({
-                body: `${event.summary} is in ${dif} minutes!`,
+                body: 'You have something in' + date.subtract(dt, today).toMinutes(),
                 to: '4154056458',  // Text this number
                 from: '+12162386619' // From a valid Twilio number
             })
             .then((message) => console.log(message.sid));
           }
+
+          //date.subtract(dt, today).toDays();
         });
     }
   }
