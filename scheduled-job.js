@@ -100,7 +100,7 @@ console.log(date.subtract(today, yesterday).toMinutes())
 
           var time = event.start.dateTime
           var minute = parseInt(time.split("T")[1].split(":")[1])
-          var hours = parseInt(time.split("T")[1].split(":")[0])
+          var hours = parseInt(time.split("T")[1].split(":")[0])+7
           var year = parseInt(time.split("T")[0].split("-")[0])
           var month = parseInt(time.split("T")[0].split("-")[1])-1
           var datee = parseInt(time.split("T")[0].split("-")[2])
@@ -124,7 +124,7 @@ console.log(date.subtract(today, yesterday).toMinutes())
             var client = new twilio(accountSid, authToken);
 
             client.messages.create({
-                body: 'You have something in' + date.subtract(dt, today).toMinutes(),
+                body: 'You have' +event.summary+'in' + date.subtract(dt, today).toMinutes(),
                 to: '4154056458',  // Text this number
                 from: '+12162386619' // From a valid Twilio number
             })
