@@ -117,9 +117,7 @@ console.log(date.subtract(today, yesterday).toMinutes())
           console.log(hey)
           if (hey < 10){
             console.log("whoop")
-            var accountSid = 'ACba12b2496ef12926253f813be8e1876a'; // Your Account SID from www.twilio.com/console
-            var authToken = '28bde1e4f5baba87087e579cd3706ddf';   // Your Auth Token from www.twilio.com/console
-
+            
             var twilio = require('twilio');
             var client = new twilio(accountSid, authToken);
 
